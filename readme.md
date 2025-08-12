@@ -122,13 +122,14 @@ docker-compose up --build
 
 ## 📡 API Endpoints
 
-**Base URL:** `http://localhost:8080`
+**Base URL:** `http://localhost:4000`
 
-| Method | Endpoint      | Description             |
-| ------ | ------------- | ----------------------- |
-| GET    | `/logs`       | Fetch all logs          |
-| GET    | `/logs/:id`   | Fetch a log by ID       |
-| POST   | `/logs/query` | Query logs with filters |
+*Examples*
+GET http://localhost:4000/logs?service=syslog
+GET http://localhost:4000/logs?username=admin&is.blacklisted=false
+GET http://localhost:4000/logs?level=error
+GET http://localhost:4000/logs?service=syslog
+
 
 ---
 
