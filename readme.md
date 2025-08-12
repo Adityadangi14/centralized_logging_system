@@ -12,44 +12,61 @@ A **user-facing API** is provided for querying logs.
 ## 📂 Project Structure
 
 
-
+```
 .
-├── api                     # API service to query logs
-│   ├── db                  # SQLC generated DB code
-│   ├── handler             # HTTP handlers
-│   ├── initilizers         # Database & env initialization
-│   ├── query.sql           # SQL queries for logs
-│   ├── schema.sql          # Database schema
-│   ├── sqlc.yml            # SQLC configuration
-│   ├── Dockerfile
-│   ├── go.mod / go.sum
-│   └── main.go
-│
-├── linux\_sys\_logs          # Simulated Linux system logs generator
+├── api
+│   ├── db
+│   │   └── gen
+│   │       ├── db.go
+│   │       ├── models.go
+│   │       └── query.sql.go
 │   ├── Dockerfile
 │   ├── go.mod
-│   └── main.go
-│
-├── log\_collector           # Central log collector service
-│   ├── db                  # SQLC generated DB code
-│   ├── models              # Log models
-│   ├── src/initializers    # TCP server, DB & env loader
-│   ├── query.sql           # SQL queries
-│   ├── schema.sql          # Database schema
+│   ├── go.sum
+│   ├── handler
+│   │   └── http_handler.go
+│   ├── initilizers
+│   │   ├── conn_db.go
+│   │   └── load_env.go
+│   ├── main.go
+│   ├── query.sql
+│   ├── schema.sql
+│   └── sqlc.yml
+├── docker-compose.yml
+├── linux_sys_logs
+│   ├── Dockerfile
+│   ├── go.mod
+│   ├── main.go
+│   └── src
+├── log_collector
+│   ├── db
+│   │   └── gen
+│   │       ├── db.go
+│   │       ├── models.go
+│   │       └── query.sql.go
+│   ├── Dockerfile
+│   ├── go.mod
+│   ├── go.sum
+│   ├── main.go
+│   ├── models
+│   │   └── log_models.go
+│   ├── query.sql
+│   ├── schema.sql
 │   ├── sqlc.yml
-│   ├── Dockerfile
-│   ├── go.mod / go.sum
-│   └── main.go
-│
-├── login\_audit             # Simulated login audit log generator
+│   └── src
+│       └── initializers
+│           ├── db_conn.go
+│           ├── load_env.go
+│           └── tcp_conn.go
+├── login_audit
 │   ├── Dockerfile
 │   ├── go.mod
-│   └── main.go
-│
-├── docker-compose.yml      # Docker orchestration file
-└── readme.md               # Project documentation
+│   ├── main.go
+│   └── src
+└── readme.md
 
-````
+
+```
 
 ---
 
