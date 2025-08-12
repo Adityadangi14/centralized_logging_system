@@ -1,6 +1,6 @@
-Here’s your reorganized and polished `README.md` with proper Markdown formatting and cleaner structure.
 
-```markdown
+
+
 # 📝 Centralized Logging System using Golang Microservices & Docker
 
 A **Centralized Logging System** built with **Golang microservices** and containerized using **Docker**.
@@ -11,7 +11,7 @@ A **user-facing API** is provided for querying logs.
 
 ## 📂 Project Structure
 
-```
+
 
 .
 ├── api                     # API service to query logs
