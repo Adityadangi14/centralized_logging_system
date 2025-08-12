@@ -125,10 +125,17 @@ docker-compose up --build
 **Base URL:** `http://localhost:4000`
 
 *Examples*
+# Get logs for a specific service
 GET http://localhost:4000/logs?service=syslog
+
+# Get logs for a specific username and blacklist status
 GET http://localhost:4000/logs?username=admin&is.blacklisted=false
+
+# Get logs for a specific log level
 GET http://localhost:4000/logs?level=error
-GET http://localhost:4000/logs?service=syslog
+
+# Get logs for a specific service and log level
+GET http://localhost:4000/logs?service=syslog&level=error
 
 
 ---
