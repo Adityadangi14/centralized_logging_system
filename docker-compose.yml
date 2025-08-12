@@ -1,0 +1,64 @@
+version: "3.9"
+
+services:
+  # Log Collector Service
+  log_collector:
+    build:
+      context: ./log_collector
+      dockerfile: Dockerfile
+    container_name: log_collector_service
+
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: logsdb
+    ports:
+      - "3000:3000" # Change if your service listens on another port
+    networks:
+      - internal_net
+
+  # Linux System Logs Service
+  linux_sys_logs:
+    build:
+      context: ./linux_sys_logs
+      dockerfile: Dockerfile
+    container_name: linux_sys_logs_service
+    depends_on:
+      - log_collector
+    environment:
+      LOG_COLLECTOR_HOST: log_collector
+      LOG_COLLECTOR_PORT: 3000
+    networks:
+      - internal_net
+
+  # Login Audit Service
+  login_audit:
+    build:
+      context: ./login_audit
+      dockerfile: Dockerfile
+    container_name: login_audit_service
+    depends_on:
+      - log_collector
+    environment:
+      LOG_COLLECTOR_HOST: log_collector
+      LOG_COLLECTOR_PORT: 3000
+    networks:
+      - internal_net
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: api
+    ports:
+      - "4000:4000"
+    depends_on:
+      - log_collector
+    networks:
+      - internal_net
+
+networks:
+  internal_net:
+    driver: bridge
